@@ -1,0 +1,6 @@
+{
+  "name": "Mindset Satu Persen",
+  "description": "Landing Page Modern & Premium Member Portal untuk Channel YouTube Mindset Satu Persen - Edukasi Keuangan & Ekonomi Sederhana.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

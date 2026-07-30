@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-display: "Montserrat", "Plus Jakarta Sans", system-ui, sans-serif;
+  --color-brand-red: #FF2B2B;
+  --color-brand-dark-red: #D91D1D;
+  --color-brand-light-red: #FFF0F0;
+}
+
+@layer base {
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+  }
+}
+
+/* Glassmorphism and animations */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.brand-shadow {
+  box-shadow: 0 10px 30px -10px rgba(255, 43, 43, 0.25);
+}
+
+.brand-shadow-hover:hover {
+  box-shadow: 0 15px 35px -10px rgba(255, 43, 43, 0.35);
+}
+
