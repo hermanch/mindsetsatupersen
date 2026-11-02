@@ -5,15 +5,16 @@ import { Play, Eye, Clock, Youtube, ExternalLink, Search, Sparkles, Filter } fro
 
 interface TopicsSectionProps {
   onSelectVideo: (video: Video) => void;
+  videos?: Video[];
 }
 
-export const TopicsSection: React.FC<TopicsSectionProps> = ({ onSelectVideo }) => {
+export const TopicsSection: React.FC<TopicsSectionProps> = ({ onSelectVideo, videos = FREE_VIDEOS }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('Semua');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   const categories = ['Semua', 'Atur Gaji', 'Tips Menabung', 'Bebas Hutang', 'Investasi Pemula', 'Mindset Finansial'];
 
-  const filteredVideos = FREE_VIDEOS.filter((video) => {
+  const filteredVideos = videos.filter((video) => {
     const matchesCategory = selectedCategory === 'Semua' || video.category === selectedCategory;
     const matchesSearch = video.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
                           video.description.toLowerCase().includes(searchQuery.toLowerCase());

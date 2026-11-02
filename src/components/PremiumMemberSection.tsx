@@ -1,18 +1,22 @@
 import React from 'react';
 import { PREMIUM_COURSES, MEMBER_PLANS } from '../data/mockData';
-import { PremiumCourse, User } from '../types';
+import { PremiumCourse, User, MemberPlan } from '../types';
 import { Lock, Unlock, Shield, Star, CheckCircle, Clock, Sparkles, ArrowRight, Play, BookOpen } from 'lucide-react';
 
 interface PremiumMemberSectionProps {
   user: User;
   onOpenJoinModal: (courseTitle?: string) => void;
   onPreviewCourse: (course: PremiumCourse) => void;
+  courses?: PremiumCourse[];
+  memberPlans?: MemberPlan[];
 }
 
 export const PremiumMemberSection: React.FC<PremiumMemberSectionProps> = ({
   user,
   onOpenJoinModal,
-  onPreviewCourse
+  onPreviewCourse,
+  courses = PREMIUM_COURSES,
+  memberPlans = MEMBER_PLANS
 }) => {
   return (
     <>
@@ -50,7 +54,7 @@ export const PremiumMemberSection: React.FC<PremiumMemberSectionProps> = ({
 
           {/* Premium Video Cards Grid (Gated UI) */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            {PREMIUM_COURSES.map((course) => {
+            {courses.map((course) => {
               const isLockedForUser = course.isLocked && !user.isLoggedIn;
 
               return (
@@ -168,7 +172,7 @@ export const PremiumMemberSection: React.FC<PremiumMemberSectionProps> = ({
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              {MEMBER_PLANS.map((plan) => (
+              {memberPlans.map((plan) => (
                 <div
                   key={plan.id}
                   className={`rounded-2xl p-6 sm:p-8 flex flex-col justify-between border transition-all relative ${

@@ -1,6 +1,14 @@
-import { Video, PremiumCourse, Testimonial, MemberPlan } from '../types';
+import { Video, PremiumCourse, Testimonial, MemberPlan, RegisteredMember } from '../types';
 
 export const YOUTUBE_CHANNEL_URL = "https://www.youtube.com/@mindsetsatupersen05";
+
+export const INITIAL_MEMBERS: RegisteredMember[] = [
+  { id: 'm1', name: 'Budi Pratama', email: 'budi@gmail.com', memberTier: 'VIP', joinDate: '2026-01-15', status: 'Aktif' },
+  { id: 'm2', name: 'Siti Rahmawati', email: 'siti.rahma@yahoo.com', memberTier: 'Gold', joinDate: '2026-02-10', status: 'Aktif' },
+  { id: 'm3', name: 'Dicky Kurniawan', email: 'dicky23@outlook.com', memberTier: 'VIP', joinDate: '2026-03-01', status: 'Aktif' },
+  { id: 'm4', name: 'Andi Wijaya', email: 'andi.w@gmail.com', memberTier: 'Bronze', joinDate: '2026-03-12', status: 'Nonaktif' },
+  { id: 'm5', name: 'Maya Lestari', email: 'mayalestari@gmail.com', memberTier: 'VIP', joinDate: '2026-03-20', status: 'Aktif' }
+];
 
 export const CHANNEL_STATS = {
   totalViews: "2.097.480+",

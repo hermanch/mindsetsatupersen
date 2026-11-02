@@ -46,8 +46,26 @@ export interface MemberPlan {
   ctaText: string;
 }
 
+export interface ChannelStats {
+  totalViews: string;
+  subscribers: string;
+  totalVideos: string;
+  activeMembers: string;
+  satisfactionRate: string;
+}
+
+export interface RegisteredMember {
+  id: string;
+  name: string;
+  email: string;
+  memberTier: 'Bronze' | 'Gold' | 'VIP';
+  joinDate: string;
+  status: 'Aktif' | 'Nonaktif';
+}
+
 export interface User {
   isLoggedIn: boolean;
+  isAdmin?: boolean;
   name: string;
   email: string;
   memberTier?: 'Bronze' | 'Gold' | 'VIP';

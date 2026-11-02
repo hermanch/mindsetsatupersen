@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Video, PremiumCourse } from '../types';
 import { X, Youtube, ExternalLink, Play, Clock, Eye, CheckCircle2 } from 'lucide-react';
 import { YOUTUBE_CHANNEL_URL } from '../data/mockData';
+import { motion, AnimatePresence } from 'motion/react';
 
 interface VideoModalProps {
   video: Video | PremiumCourse | null;
@@ -9,13 +10,47 @@ interface VideoModalProps {
 }
 
 export const VideoModal: React.FC<VideoModalProps> = ({ video, onClose }) => {
-  if (!video) return null;
+  const isCourse = video && 'lessonsCount' in video;
 
-  const isCourse = 'lessonsCount' in video;
+  // Escape key & body scroll lock
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && video) {
+        onClose();
+      }
+    };
+    if (video) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [video, onClose]);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-xs animate-fade-in">
-      <div className="bg-slate-900 text-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl border border-slate-800 relative animate-scale-up">
+    <AnimatePresence>
+      {video && (
+        <motion.div
+          key="video-modal-backdrop"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) onClose();
+          }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-xs overflow-y-auto"
+        >
+          <motion.div
+            key="video-modal-dialog"
+            initial={{ opacity: 0, scale: 0.93, y: 16 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.93, y: 16 }}
+            transition={{ type: "spring", damping: 26, stiffness: 360, mass: 0.7 }}
+            className="bg-slate-900 text-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl border border-slate-800 relative my-auto"
+          >
         
         {/* Close Button */}
         <button
@@ -94,7 +129,9 @@ export const VideoModal: React.FC<VideoModalProps> = ({ video, onClose }) => {
 
         </div>
 
-      </div>
-    </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };

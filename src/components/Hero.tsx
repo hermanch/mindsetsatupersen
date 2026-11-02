@@ -1,12 +1,14 @@
 import React from 'react';
 import { Play, ArrowRight, ShieldCheck, TrendingUp, Users, Youtube, CheckCircle2 } from 'lucide-react';
 import { YOUTUBE_CHANNEL_URL, CHANNEL_STATS } from '../data/mockData';
+import { ChannelStats } from '../types';
 
 interface HeroProps {
   onOpenVideoModal?: (videoUrl: string) => void;
+  stats?: ChannelStats;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onOpenVideoModal }) => {
+export const Hero: React.FC<HeroProps> = ({ onOpenVideoModal, stats = CHANNEL_STATS }) => {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-white via-red-50/30 to-slate-50 pt-8 pb-16 md:pt-16 md:pb-24 border-b border-slate-200">
       
@@ -82,19 +84,19 @@ export const Hero: React.FC<HeroProps> = ({ onOpenVideoModal }) => {
             <div className="pt-6 border-t border-slate-200/80 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0">
               <div className="text-center lg:text-left">
                 <div className="text-xl sm:text-2xl font-display font-extrabold text-slate-900">
-                  {CHANNEL_STATS.totalViews}
+                  {stats.totalViews}
                 </div>
                 <div className="text-xs text-slate-500 font-semibold uppercase">Total Ditonton</div>
               </div>
               <div className="text-center lg:text-left border-x border-slate-200 px-2">
                 <div className="text-xl sm:text-2xl font-display font-extrabold text-[#FF2B2B]">
-                  {CHANNEL_STATS.subscribers}
+                  {stats.subscribers}
                 </div>
                 <div className="text-xs text-slate-500 font-semibold uppercase">Subscriber</div>
               </div>
               <div className="text-center lg:text-left">
                 <div className="text-xl sm:text-2xl font-display font-extrabold text-slate-900">
-                  {CHANNEL_STATS.totalVideos}
+                  {stats.totalVideos}
                 </div>
                 <div className="text-xs text-slate-500 font-semibold uppercase">Video Edukasi</div>
               </div>

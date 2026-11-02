@@ -2,7 +2,17 @@ import React from 'react';
 import { YOUTUBE_CHANNEL_URL } from '../data/mockData';
 import { Youtube, Instagram, Send, Heart, ArrowUp, ExternalLink } from 'lucide-react';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  onOpenAdminLoginModal?: () => void;
+  isAdminLoggedIn?: boolean;
+  onOpenCmsModal?: () => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({
+  onOpenAdminLoginModal,
+  isAdminLoggedIn,
+  onOpenCmsModal
+}) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -109,6 +119,16 @@ export const Footer: React.FC = () => {
           </p>
 
           <div className="flex items-center gap-6">
+            <button
+              onClick={() => {
+                if (isAdminLoggedIn && onOpenCmsModal) onOpenCmsModal();
+                else if (onOpenAdminLoginModal) onOpenAdminLoginModal();
+              }}
+              className="text-slate-400 hover:text-amber-400 transition-colors cursor-pointer flex items-center gap-1"
+            >
+              <span>Panel CMS Pengelola</span>
+            </button>
+
             <button
               onClick={scrollToTop}
               className="inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors cursor-pointer"
