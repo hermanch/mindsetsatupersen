@@ -13,8 +13,8 @@ Aplikasi ini telah dilengkapi dengan autentikasi produksi tanpa bypass demo:
 ### 1. Kredensial Administrator Portal CMS
 Digunakan untuk mengakses Dashboard Pengelola Konten (CMS):
 - **Akses:** Klik tombol **"Panel CMS"** di Header atau Footer situs.
-- **Username / Email:** `admin@satupersen.id` *(atau username: `admin` / email pemilik: `herman.btu@gmail.com`)*
-- **Kata Sandi (Password):** `Mindset1Persen2026!`
+- **Username / Email:** `admin@satupersen.id` *(atau username: `admin` / email pemilik: `******`)*
+- **Kata Sandi (Password):** ``
 - **Konfigurasi Environment Variable Netlify:**
   Anda dapat mengganti email dan password admin melalui Environment Variable di Netlify:
   - `VITE_ADMIN_EMAIL`
